@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Bienvenue</title>
+
+<link rel="stylesheet" href="/content/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/content/signin.css" />
+<link rel="icon" type="image/png" th:href="@{/content/favicon.png}" s/>
+
+</head>
+
+<body>
+
+	<div class="container">
+		<form class="form-signin" method="post" action="/login">
+		
+			<h2 class="form-signin-heading">Bienvenue !</h2>
+			<br>
+			<p>
+				<label for="username1" class="sr-only">Nom</label><span>JEDLI</span>
+			</p>
+			<p>
+				<label for="username" class="sr-only">Prénom</label><span>Mejdi</span>
+			</p>
+			<p>
+				<label for="username" class="sr-only">Surnom</label><span>JEDLI</span>
+			</p>
+			<p>
+				<label for="username" class="sr-only">Date de naissance</label><span>02/02/1986</span>
+			</p>
+			<p>
+				<label for="username" class="sr-only">Email</label><span>jedli.mejdi@lapost.net</span>
+			</p>
+			<p>
+				<label for="username" class="sr-only">Pays</label><span>France</span>
+			</p>
+			<br>
+			<h6 class="form-signin-heading">
+				<a href="/list">Liste</a>&nbsp;&nbsp;<a href="/">Ajouter</a>
+			</h6>
+		</form>
+
+	</div>
+
+</body>
+
+</html>
