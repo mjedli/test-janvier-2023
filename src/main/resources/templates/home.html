@@ -14,12 +14,12 @@
 <body>
 
 	<div class="container">
-		<form class="form-signin" method="post" action="/login">
+		<form class="form-signin" method="post" action="/insert">
 		
 			<h2 class="form-signin-heading">Bienvenue !</h2>
 			
-			<div class="alert alert-danger" th:if="${param.error}">Enregistrement KO.</div>
-			<div th:if="${param.logout}" class="alert alert-success">Enregistrement OK.</div>
+			<div class="alert alert-danger" th:if="${paramerror}"><span th:text="${paramerror}" /></div>
+			<div th:if="${paramok}" class="alert alert-success">Enregistrement OK.</div>
 			<p>
 				<label for="username" class="sr-only">Nom</label> <input
 					type="text" name="lastname" class="form-control"

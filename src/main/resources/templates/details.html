@@ -14,34 +14,32 @@
 <body>
 
 	<div class="container">
-		<form class="form-signin" method="post" action="/login">
-		
-			<h2 class="form-signin-heading">Bienvenue !</h2>
-			<br>
-			<p>
-				<label for="username1" class="sr-only">Nom</label><span>JEDLI</span>
-			</p>
-			<p>
-				<label for="username" class="sr-only">Prénom</label><span>Mejdi</span>
-			</p>
-			<p>
-				<label for="username" class="sr-only">Surnom</label><span>JEDLI</span>
-			</p>
-			<p>
-				<label for="username" class="sr-only">Date de naissance</label><span>02/02/1986</span>
-			</p>
-			<p>
-				<label for="username" class="sr-only">Email</label><span>jedli.mejdi@lapost.net</span>
-			</p>
-			<p>
-				<label for="username" class="sr-only">Pays</label><span>France</span>
-			</p>
-			<br>
-			<h6 class="form-signin-heading">
-				<a href="/list">Liste</a>&nbsp;&nbsp;<a href="/">Ajouter</a>
-			</h6>
-		</form>
-
+	
+		<h2 class="form-signin-heading">Bienvenue !</h2>
+		<br>
+		<p>
+			<label for="username1" class="sr-only">Nom</label><span th:text=${user.firstname}></span>
+		</p>
+		<p>
+			<label for="username" class="sr-only">Prénom</label><span th:text=${user.lastname}></span>
+		</p>
+		<p>
+			<label for="username" class="sr-only">Surnom</label><span th:text=${user.nickname}></span>
+		</p>
+		<p>
+			<label for="username" class="sr-only">Date de naissance</label><span th:text=${user.birthday}></span>
+		</p>
+		<p>
+			<label for="username" class="sr-only">Email</label><span th:text=${user.email}></span>
+		</p>
+		<p>
+			<label for="username" class="sr-only">Pays</label><span th:text=${user.country}></span>
+		</p>
+		<br>
+		<h6 class="form-signin-heading">
+			<a href="/list">Liste</a>&nbsp;&nbsp;<a href="/">Ajouter</a>
+		</h6>
+			
 	</div>
 
 </body>
