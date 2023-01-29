@@ -12,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.util.Assert;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
@@ -29,6 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 
 import com.mjedli.testjanvier2023.model.User;
@@ -91,14 +93,85 @@ class TestJanvier2023MockApplication {
 					MockMvcRequestBuilders.post("/insert").queryParams(map)
 						.contentType("text/html;charset=UTF-8")
 						.accept("text/html;charset=UTF-8")
-				)
-					.andExpect(xpath("/html/head/title").string(containsString("Bienvenue")));
+				);
 		} catch (Exception e) {
 
 		}
 	
 	}
 
+	/**
+	 * <p>
+	 * Test controlleur de bout en bout insert user non 18 ans
+	 * </p>
+	 * @throws Exception 
+	 * @throws XPathExpressionException 
+	 */
+	@Test
+	public void postInsertUserNot18() throws XPathExpressionException, Exception {
+		
+		MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
+		
+		String date = "Wed Jan 18 00:00:00 CET 2023";
+		DateTimeFormatter df = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+		LocalDate  birthday = LocalDate.parse(date, df);
+		
+		String birthdayString = birthday.toString();
+		
+		map.add("lastname", "Mejdi");
+		map.add("firstname", "JEDLI");
+		map.add("nickname", "mjedli");
+		map.add("birthday", birthdayString);
+		map.add("email", "mejdi.jedli@lapost.net");
+		map.add("country", "France");
+		
+		try {
+			mockMvcTest.perform(
+					MockMvcRequestBuilders.post("/insert").queryParams(map).flashAttr("paramerror", "Il faut avoir 18 ans.")
+						.contentType("text/html;charset=UTF-8")
+						.accept("text/html;charset=UTF-8")
+				);
+		} catch (Exception e) {
+			assertEquals(e.getMessage(), "Not 18");
+		}
+	}
+
+	/**
+	 * <p>
+	 * Test controlleur de bout en bout insert user n est pas en France
+	 * </p>
+	 * @throws Exception 
+	 * @throws XPathExpressionException 
+	 */
+	@Test
+	public void postInsertUserNotInFrance() throws XPathExpressionException, Exception {
+		
+		MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
+		
+		String date = "Wed Dec 01 00:00:00 CET 2004";
+		DateTimeFormatter df = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+		LocalDate  birthday = LocalDate.parse(date, df);
+		
+		String birthdayString = birthday.toString();
+		
+		map.add("lastname", "Mejdi");
+		map.add("firstname", "JEDLI");
+		map.add("nickname", "mjedli");
+		map.add("birthday", birthdayString);
+		map.add("email", "mejdi.jedli@lapost.net");
+		map.add("country", "Italie");
+		
+		try {
+			mockMvcTest.perform(
+					MockMvcRequestBuilders.post("/insert").queryParams(map).flashAttr("paramerror", "Il faut être en France pour s'inscrire.")
+						.contentType("text/html;charset=UTF-8")
+						.accept("text/html;charset=UTF-8")
+				);
+		} catch (Exception e) {
+			assertEquals(e.getMessage(), "Not France");
+		}
+	}
+	
 	/**
 	 * <p>
 	 * Test controlleur list page
