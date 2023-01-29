@@ -34,6 +34,6 @@ Les informations de l'utilisateur comme le nom le prénom la date de naissance l
 
 Il est utilisé pour identifier les méthodes de la couche services. Il permet d'écrire des log simple qui donne quelques informations sur ces méthodes comme les entrées sorties de chaque méthode ainsi que le temps d'exécution.
 
-Les tests unitaires
+## Les tests unitaires
 
 On a tester avec spring la couches controller ainsi que la partie integration qui permet d'exécuter un test de bout en bout.
