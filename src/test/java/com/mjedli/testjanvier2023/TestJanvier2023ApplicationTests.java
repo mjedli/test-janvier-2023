@@ -28,7 +28,11 @@ class TestJanvier2023ApplicationTests {
 	void contextLoads() {
 	}
 	
-
+	/**
+	 * <p>
+	 * Test controlleur de bout en bout home page
+	 * </p>
+	 */
 	@Test
 	public void homePage() {
 		ResponseEntity<Object> entity = testRestTemplate.getForEntity("/", null);
@@ -37,6 +41,12 @@ class TestJanvier2023ApplicationTests {
 		}
 	}
 	
+	
+	/**
+	 * <p>
+	 * Test controlleur de bout en bout insert user
+	 * </p>
+	 */
 	@Test
 	public void postInsertUser() {
 		
@@ -67,6 +77,11 @@ class TestJanvier2023ApplicationTests {
 
 	}
 
+	/**
+	 * <p>
+	 * Test controlleur de bout en bout list page
+	 * </p>
+	 */
 	@Test
 	public void listPage() {
 		ResponseEntity<Object> entity = testRestTemplate.getForEntity("/list", null);
@@ -75,6 +90,12 @@ class TestJanvier2023ApplicationTests {
 		}
 	}
 	
+	
+	/**
+	 * <p>
+	 * Test controlleur de bout en bout details page
+	 * </p>
+	 */
 	@Test
 	public void detailsPage() {
 		ResponseEntity<Object> entity = testRestTemplate.getForEntity("/user/0", null);
